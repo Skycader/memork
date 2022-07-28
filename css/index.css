@@ -1,0 +1,168 @@
+body {
+  background: #242424;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.root {
+  display: flex;
+  flex-wrap: wrap;
+
+  flex-flow: row;
+}
+.dates {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  border-radius: 15px;
+  width: 200px;
+  height: 70px;
+  margin: 30px 25px 0px 25px;
+  color: white;
+  font-family: memoff;
+  font-size: 20px;
+}
+
+br {
+  display: none;
+}
+.date {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  border-radius: 15px;
+  margin-bottom: 15px;
+  width: 100%;
+  height: 70px;
+  background: #141414;
+  color: white;
+  font-family: memoff;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.plusTask {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  border-radius: 15px;
+  margin-bottom: 15px;
+  width: calc(100% - 10px);
+  height: 70px;
+  background: #141414;
+  color: white;
+  font-family: memoff;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.tasks {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  border-radius: 15px;
+  width: calc(100% - 300px);
+  height: 70px;
+  margin: 30px 25px 0px 25px;
+  color: white;
+  font-family: memoff;
+  font-size: 20px;
+}
+
+.task {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  margin-bottom: 15px;
+  border-radius: 15px;
+  width: 100%;
+  height: 100%;
+  color: white;
+  font-family: memoff;
+  font-size: 20px;
+}
+
+.taskInfo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  border-radius: 15px;
+  background: #141414;
+  width: calc(100% - 160px);
+  height: 100%;
+  color: white;
+  font-family: memoff;
+  font-size: 20px;
+}
+
+.success {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  border-radius: 15px;
+  background: #141414;
+  width: 70px;
+  cursor: pointer;
+  height: 100%;
+  color: white;
+  font-family: memoff;
+  font-size: 20px;
+}
+
+.failure {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  border-radius: 15px;
+  background: #141414;
+  width: 70px;
+  height: 100%;
+  color: white;
+  font-family: memoff;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.tasks {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  width: 100%;
+}
+
+.break {
+  flex-basis: 100%;
+  height: 0;
+}
+.item {
+  width: 12.5%;
+  display: flex;
+  justify-content: center;
+}
+
+*:focus {
+  outline: none;
+}
+
+.hidden {
+  display: none;
+}
+
+.add {
+  cursor: pointer;
+}
+
+@font-face {
+  font-family: memoff; /* Имя шрифта */
+  src: url(memoff.woff);
+}

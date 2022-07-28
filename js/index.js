@@ -76,7 +76,7 @@ let planner = {
       .insertAdjacentHTML(
         "beforebegin",
         "<div oncontextmenu='planner.dateWider(this,0); return false;' onclick='planner.dateWider(this,1)' class='date'>" +
-          theDate +``
+          theDate +
           "</div>"
       );
       planner.highLight();

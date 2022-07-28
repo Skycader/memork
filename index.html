@@ -9,6 +9,9 @@
       content="width=device-width, initial-scale=1, user-scalable=no, shrink-to-fit=no"
     />
     <meta name="color-scheme" content="light dark" />
+    <title>Memork</title>
+    <link rel="icon" href="assets/icon.svg">
+
     <style>
       body {
         background: #242424;
@@ -39,7 +42,7 @@
       }
 
       br {
-       display: none;
+        display: none;
       }
       .date {
         display: flex;
@@ -224,51 +227,59 @@
       ) {
         document.querySelector(".plusDate").attributes.startDate.textContent =
           Date.now();
-           
       }
-      
+
       let planner = {
         scrollIntoView: () => {
           let dates = document.querySelectorAll(".date");
           for (var i = 0; i < dates.length; i++) {
             if (dates[i].innerHTML == planner.getDate()) {
               dates[i].scrollIntoView();
-              if (i>0) 
-              dates[i-1].style.background = ""
-              dates[i].style.background = "red"
+              if (i > 0) dates[i - 1].style.background = "";
+              dates[i].style.background = "red";
               break;
             }
           }
         },
-       highLight: () => {
+        highLight: () => {
           let dates = document.querySelectorAll(".date");
           for (var i = 0; i < dates.length; i++) {
             if (dates[i].innerHTML == planner.getDate()) {
-              if (i>0) 
-              dates[i-1].style.background = ""
-              dates[i].style.background = "red"
+              if (i > 0) dates[i - 1].style.background = "";
+              dates[i].style.background = "red";
               break;
             }
           }
         },
 
         newDay: (date) => {
-          return (date != planner.getDate() ? true : false)
+          return date != planner.getDate() ? true : false;
         },
-       
+
         highLightNewDay: () => {
           if (planner.newDay(today)) {
-          today = planner.getDate()
-          planner.highLight();
-          } 
+            today = planner.getDate();
+            planner.highLight();
+          }
         },
         save: () => {
           let save = document.querySelector(".root").innerHTML;
-          localStorage.setItem("save", save);
+          let check = localStorage.getItem("save");
+          if (check == null) {
+            check = 0;
+          } else {
+            check = check.length;
+          }
+          
+           
+          if (check < save.length) {
+            localStorage.setItem("save", save);
+          }
         },
         load: () => {
           let element = document.querySelector(".root");
           let save = localStorage.getItem("save");
+          
           element.innerHTML = save;
         },
         getDate: () => {
@@ -329,24 +340,23 @@
             );
         },
         success: (element) => {
-
-          if (element.parentElement.attributes.done.textContent== "0") {
+          if (element.parentElement.attributes.done.textContent == "0") {
             element.parentElement.attributes.done.textContent = "1";
             element.parentElement.children[0].style.background = "red";
-            element.parentElement.children[0].innerHTML += ` [${Date().split(" ")[4]} - `
+            element.parentElement.children[0].innerHTML += ` [${
+              Date().split(" ")[4]
+            } - `;
             // element.parentElement.children[0].innerHTML = element.parentElement.children[0].innerHTML + "123"
-             
-          } else if (element.parentElement.attributes.done.textContent== "1") {
-         
+          } else if (element.parentElement.attributes.done.textContent == "1") {
             element.parentElement.attributes.done.textContent = "2";
             element.parentElement.children[0].style.background = "green";
-            element.parentElement.children[0].innerHTML.replace("<br>","")
-            element.parentElement.children[0].innerHTML += `${Date().split(" ")[4]}]`
-            
-          } else if (element.parentElement.attributes.done.textContent== "2") {
+            element.parentElement.children[0].innerHTML.replace("<br>", "");
+            element.parentElement.children[0].innerHTML += `${
+              Date().split(" ")[4]
+            }]`;
+          } else if (element.parentElement.attributes.done.textContent == "2") {
             element.parentElement.attributes.done.textContent = "0";
             element.parentElement.children[0].style.background = "#141414";
-            
           }
         },
         failure: (element) => {
@@ -377,9 +387,9 @@
         drop: () => {
           confirmed = confirm("Drop database?");
           if (confirmed) {
-            document.querySelector("body").innerHTML = ""
+            document.querySelector("body").innerHTML = "";
             localStorage.removeItem("save");
-            location.reload(1)
+            location.reload(1);
           }
         },
       };
@@ -395,7 +405,7 @@
           var code = event.code;
           // Alert the key name and key code on keydown
           //alert(`Key pressed ${name} \r\n Key code value: ${code}`);
-          planner.save()
+          planner.save();
         },
         false
       );
@@ -408,8 +418,8 @@
           document.querySelector("html").scrollBy(0, -15);
         }
       };
-      let today = planner.getDate()
-      let highlightInterval = setInterval(planner.highLightNewDay,1000)
+      let today = planner.getDate();
+      let highlightInterval = setInterval(planner.highLightNewDay, 1000);
     </script>
   </body>
 </html>

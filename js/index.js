@@ -40,15 +40,8 @@ let planner = {
     }
   },
   save: () => {
-    let save = document.querySelector(".root").innerHTML;
-    let check = localStorage.getItem("save");
-    if (check == null) {
-      check = 0;
-    } else {
-      check = check.length;
-    }
-
-    if (check < save.length) {
+    if (planner.allowSave) {
+      let save = document.querySelector(".root").innerHTML;
       localStorage.setItem("save", save);
     }
   },
@@ -79,7 +72,7 @@ let planner = {
           theDate +
           "</div>"
       );
-      planner.highLight();
+    planner.highLight();
   },
   addTask: (element, where) => {
     if (!element && !where) {
@@ -104,7 +97,6 @@ let planner = {
         );
       }
     }
-    
   },
   addFailure: () => {
     let inner = document.querySelector(".taskExample").innerHTML;
@@ -172,6 +164,10 @@ document.querySelector("html").addEventListener("click", function () {
   planner.save();
 });
 
+document.querySelector("html").addEventListener("contextmenu", function () {
+  planner.save();
+});
+
 document.addEventListener(
   "keyup",
   (event) => {
@@ -184,14 +180,16 @@ document.addEventListener(
   false
 );
 
-window.onload = () => {
+let today = planner.getDate();
+let highlightInterval = setInterval(planner.highLightNewDay, 1000);
+
+document.addEventListener("DOMContentLoaded", function (event) {
   let loaded = localStorage.getItem("save");
-  if (loaded==null) loaded=""
+  if (loaded == null) loaded = "";
   if (loaded.length > 0) {
     planner.load();
     planner.scrollIntoView();
     document.querySelector("html").scrollBy(0, -15);
   }
-};
-let today = planner.getDate();
-let highlightInterval = setInterval(planner.highLightNewDay, 1000);
+  planner.allowSave = 1;
+});
